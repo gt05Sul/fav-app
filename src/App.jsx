@@ -1,10 +1,11 @@
+import { RoutesApp } from '../routes'
 import './App.css'
 
 function App() {
 
   return (
     <>
-      <h1>App works!</h1>
+      <RoutesApp />
     </>
   )
 }
