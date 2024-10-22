@@ -20,9 +20,21 @@ export const Products = () => {
                 return;
             })
         }
-
         loadProduct()
-    }, [id])
+    }, [id]);
+
+    function salvarProduto() {
+        const minhaLista = localStorage.getItem('@produtos');
+        const produtosSalvos = JSON.parse(minhaLista) || [];
+        const hasProduct = produtosSalvos.some((produto) => produto.id === product.id);
+        if (hasProduct) {
+            alert("Este produto já foi salvo!")
+            return;
+        }
+        produtosSalvos.push(product);
+        localStorage.setItem('@produtos', JSON.stringify(produtosSalvos));
+        alert('Produto Salvo com sucesso!')
+    }
 
     return (
         <div className="produto-info">
@@ -30,7 +42,7 @@ export const Products = () => {
             <img src={product.thumbnail} alt={product.brand}/>
             <p>{product.description}</p>
             <div className="area-buttons">
-                <button>Salvar</button>
+                <button onClick={salvarProduto}>Salvar</button>
                 <button>
                     <a target="blank" href={`http://google.com/search?q=${product.title}`}>
                     Mais na internet
