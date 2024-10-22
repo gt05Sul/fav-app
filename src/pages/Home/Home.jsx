@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { Link } from "react-router-dom";
+import './home.css'
 
 export const Home = () => {
     const [products, setProducts] = useState([]);
@@ -8,7 +9,7 @@ export const Home = () => {
     useEffect(() => {
         async function loadProduct() {
             const response = await api.get("products/");
-            setProducts(response.data.products)
+            setProducts(response.data.products.slice(0, 15));
         }
         loadProduct();
     }, [])
